@@ -1,0 +1,69 @@
+#from typing import List, Tuple
+
+# We assume that all lists passed to functions are the same length N
+
+
+# answers 
+# 1 - n
+# 2 - 1
+# 3 - n^2
+# 4 - n
+# 5 - n^2
+# 6 - log n
+
+def question1(first_list: List[int], second_list: List[int]) -> List[int]:
+    res: List[int] = []
+    for el_first_list in first_list:
+        if el_first_list in second_list:
+            res.append(el_first_list)
+    return res
+
+def question2(n: int) -> int:
+	for _ in range(10):
+		n **= 3
+	return n
+
+def question3(first_list: List[int], second_list: List[int])-> List[int]:
+   temp: List[int] = first_list[:]
+   for el_second_list in second_list:
+      flag = False
+      for check in temp:
+         if el_second_list == check:
+            flag = True
+            break
+      if not flag:
+         temp.append(second_list)
+   return temp
+
+
+def question4(input_list: List[int]) -> int:
+  res: int = 0
+  for el in input_list:
+    if el > res:
+      res = el
+  return res
+ 
+
+def question5(n: int) -> List[Tuple[int, int]]:
+    res: List[Tuple[int, int]] = []
+    for i in range(n):
+        for j in range(n):
+            res.append((i, j))
+    return res
+
+
+def question6(n: int) -> int:
+    while n > 1:
+        n /= 2
+    return n
+
+1.  O(N^2) мала б бути відповідь n^2 через те, що найгірший сценарій виконання це гніздова петля, 
+в якій кожен елемент з 1 списку порівнюється з кожним елементом з 2 списку.
+
+2. O(1) тому, до функція виконується фіксовану кількість разів (10) незалежно від input value n 
+
+3. O(N^2) найгірший сценарій виконання це гніздова петля, 
+в якій кожен елемент з 1 списку порівнюється з кожним елементом з тимчасового списку, що має N елементів
+4. O(N) тому, що ітерація відбувається через весь інпут ліст для пошуку максимального значення
+5. O(N^2) тому, що це гніздова петля і ітеруються вони обидві - і внутрішня і зовнішня.
+6. O(log N) тому, що петля while виконує ділення n на 2  в кожній ітерації, результатом чого стає логарифмічна кількість ітерацій, до досягнення base case n=1
